@@ -1,6 +1,6 @@
 {
   "name": "github_wiki_scraper",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "cheerio": "^0.20.0",
+    "promise": "^7.1.1",
     "request": "^2.72.0"
   }
 }
