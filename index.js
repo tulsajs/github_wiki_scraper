@@ -11,12 +11,16 @@ function getEventsInfo(github) {
         var $ = cheerio.load(html);
         if($('.gh-header-title').html() != 'Home') {
           var wikiPage = {};
+          wikiPage.topics = [];
           wikiPage.title = $('.gh-header-title').html();
           wikiPage.when = $('p > strong:contains("When")').next().html();
           wikiPage.time = $('p > strong:contains("Time")').next().html();
           wikiPage.whereName = $('p > strong:contains("Where-Name")').next().html();
           wikiPage.wherePlace = $('p > strong:contains("Where-Place")').next().html();
-          wikiPage.topics = $('p > strong:contains("Topics")').parent().next().html();
+          $('p > strong:contains("Topics")').parent().next().children('li').each(function(li){
+            wikiPage.topics.push($(this).text());
+          })
+          wikiPage.url = `https://github.com/${github.user}/${github.repo}/wiki/${github.month}-${github.year}-Meeting`;
           wikiPage.success = true;
         } else {
           var wikiPage = {error: 'Event Not Planned!'}
