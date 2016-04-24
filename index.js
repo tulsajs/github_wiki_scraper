@@ -2,8 +2,8 @@ var request = require('request');
 var cheerio = require('cheerio');
 
 //function to scrape github wiki pages for TulsaJS Events.
-function getEventsInfo(user, repo, month, year) {
-  request(`https://github.com/${user}/${repo}/wiki/${month}-${year}-Meeting`, function (error, response, html) {
+function getEventsInfo(github, callback) {
+  request(`https://github.com/${github.user}/${github.repo}/wiki/${github.month}-${github.year}-Meeting`, function (error, response, html) {
     if (!error && response.statusCode == 200) {
       var $ = cheerio.load(html);
       if($('.gh-header-title').html() != 'Home') {
@@ -18,8 +18,7 @@ function getEventsInfo(user, repo, month, year) {
       } else {
         var wikiPage = {error: 'Event Not Planned!'}
       }
-      console.log(wikiPage)
-      return wikiPage
+      return callback(wikiPage)
     }
   });
 }
