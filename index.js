@@ -16,6 +16,7 @@ function getEventsInfo(github) {
           wikiPage.when = $('p > strong:contains("When")').next().html();
           wikiPage.time = $('p > strong:contains("Time")').next().html();
           wikiPage.meetup = $('p > strong:contains("Meetup")').next().html();
+          wikiPage.meetupId = $('p > strong:contains("Meetup-id")').next().html();
           wikiPage.whereName = $('p > strong:contains("Where-Name")').next().html();
           wikiPage.wherePlace = $('p > strong:contains("Where-Place")').next().html();
           $('p > strong:contains("Topics")').parent().next().children('li').each(function(li){
